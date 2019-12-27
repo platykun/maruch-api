@@ -1,0 +1,15 @@
+{
+  "groupId" : "swagger.api",
+  "artifactId" : "maruch-api",
+  "artifactVersion" : "0.0.1",
+  "invokerPackage" : "swagger.api",
+  "modelPackage" : "swagger.api.model",
+  "apiPackage" : "swagger.api",
+  "configPackage" : "swagger.api.configuration",
+  "useTags" : true,
+  "interfaceOnly" : true,
+  "useBeanValidation" : true,
+  "serializableModel" : true,
+  "java11" : true,
+  "dateLibrary" : "java11"
+}
