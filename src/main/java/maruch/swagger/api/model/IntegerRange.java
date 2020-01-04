@@ -15,7 +15,7 @@ import javax.validation.constraints.*;
  */
 @ApiModel(description = "値の範囲を指定")
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-01-04T17:46:58.137124+09:00[Asia/Tokyo]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-01-04T18:32:38.687264+09:00[Asia/Tokyo]")
 public class IntegerRange  implements Serializable  {
   private static final long serialVersionUID = 1L;
 
@@ -34,7 +34,7 @@ public class IntegerRange  implements Serializable  {
    * 最小値
    * @return min
   **/
-  @ApiModelProperty(example = "1", value = "最小値")
+  @ApiModelProperty(example = "0", value = "最小値")
 
   public Integer getMin() {
     return min;
@@ -53,7 +53,7 @@ public class IntegerRange  implements Serializable  {
    * 最大値
    * @return max
   **/
-  @ApiModelProperty(example = "1000", value = "最大値")
+  @ApiModelProperty(example = "10000", value = "最大値")
 
   public Integer getMax() {
     return max;

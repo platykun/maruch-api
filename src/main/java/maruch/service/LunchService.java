@@ -93,9 +93,9 @@ public class LunchService {
         SearchPropertiesValue searchPropertiesValue = lunchSearchValue.getSearchPropertiesValue();
         Pageable pageable = PageRequest.of(searchPropertiesValue.getCursor(), searchPropertiesValue.getCount());
 
-        List<LunchEntity> userEntities = lunchRepository.findAll(pageable).toList();
+        List<LunchEntity> lunchEntities = lunchRepository.findAll(pageable).toList();
 
-        return userEntities.stream()
+        return lunchEntities.stream()
                 .map(u ->
                         Lunch.create(
                                 u.getId(),

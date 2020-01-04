@@ -15,7 +15,7 @@ import javax.validation.constraints.*;
  * SearchProperties
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-01-04T17:46:58.137124+09:00[Asia/Tokyo]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-01-04T18:32:38.687264+09:00[Asia/Tokyo]")
 public class SearchProperties  implements Serializable  {
   private static final long serialVersionUID = 1L;
 
@@ -32,14 +32,14 @@ public class SearchProperties  implements Serializable  {
 
   /**
    * 返却するデータのサイズ。
-   * minimum: 1
+   * minimum: 0
    * maximum: 100
    * @return count
   **/
-  @ApiModelProperty(value = "返却するデータのサイズ。")
+  @ApiModelProperty(example = "20.0", value = "返却するデータのサイズ。")
 
   @Valid
-@DecimalMin("1") @DecimalMax("100")   public BigDecimal getCount() {
+@DecimalMin("0") @DecimalMax("100")   public BigDecimal getCount() {
     return count;
   }
 
@@ -54,14 +54,14 @@ public class SearchProperties  implements Serializable  {
 
   /**
    * 取得するデータのページ数。
-   * minimum: 1
+   * minimum: 0
    * maximum: 100
    * @return cursor
   **/
-  @ApiModelProperty(value = "取得するデータのページ数。")
+  @ApiModelProperty(example = "0.0", value = "取得するデータのページ数。")
 
   @Valid
-@DecimalMin("1") @DecimalMax("100")   public BigDecimal getCursor() {
+@DecimalMin("0") @DecimalMax("100")   public BigDecimal getCursor() {
     return cursor;
   }
 

@@ -30,7 +30,7 @@ public class LunchHelper {
 
         List<LunchSearchValue.SortEnum> sortList =
                 req.getSort().stream()
-                        .map(s -> LunchSearchValue.SortEnum.valueOf(s.toString()))
+                        .map(s -> LunchSearchValue.SortEnum.toEnum(s.toString()))
                         .collect(Collectors.toList());
 
         maruch.swagger.api.model.IntegerRange valueRange = req.getPrice();
@@ -68,15 +68,6 @@ public class LunchHelper {
     }
 
     public static maruch.swagger.api.model.Lunch convertModelToResultLunch(Lunch lunch) {
-        LunchDetail lunchDetail = lunch.getLunchDetail();
-        maruch.swagger.api.model.LunchDetail targetDetail = new maruch.swagger.api.model.LunchDetail();
-        targetDetail.setCalorie(BigDecimal.valueOf(lunchDetail.getCalorie()));
-        targetDetail.setDescription(lunchDetail.getDescription());
-        targetDetail.setFiber(BigDecimal.valueOf(lunchDetail.getFiber()));
-        targetDetail.setLabel(lunchDetail.getLabel());
-        targetDetail.setLipid(BigDecimal.valueOf(lunchDetail.getLipid()));
-        targetDetail.setProtein(BigDecimal.valueOf(lunchDetail.getProtein()));
-        targetDetail.setSalt(BigDecimal.valueOf(lunchDetail.getSalt()));
 
         maruch.swagger.api.model.Lunch target = new maruch.swagger.api.model.Lunch();
         target.setId(lunch.getId());
@@ -84,7 +75,20 @@ public class LunchHelper {
         target.setCreator(null);
         target.setShop(null);
         target.setPrice(lunch.getPrice());
-        target.setDetail(targetDetail);
+
+        LunchDetail lunchDetail = lunch.getLunchDetail();
+        if(lunchDetail != null) {
+            maruch.swagger.api.model.LunchDetail targetDetail = new maruch.swagger.api.model.LunchDetail();
+            targetDetail.setCalorie(BigDecimal.valueOf(lunchDetail.getCalorie()));
+            targetDetail.setDescription(lunchDetail.getDescription());
+            targetDetail.setFiber(BigDecimal.valueOf(lunchDetail.getFiber()));
+            targetDetail.setLabel(lunchDetail.getLabel());
+            targetDetail.setLipid(BigDecimal.valueOf(lunchDetail.getLipid()));
+            targetDetail.setProtein(BigDecimal.valueOf(lunchDetail.getProtein()));
+            targetDetail.setSalt(BigDecimal.valueOf(lunchDetail.getSalt()));
+
+            target.setDetail(targetDetail);
+        }
 
         return target;
     }

@@ -11,7 +11,7 @@ public class UserHelper {
             maruch.swagger.api.model.RequestUser requestUser) {
         return User.craeteUser(
                 requestUser.getName(),
-                SexEnum.valueOf(requestUser.getSex().toString())
+                SexEnum.toEnum(requestUser.getSex().toString())
         );
     }
 
@@ -21,7 +21,7 @@ public class UserHelper {
         responseUser.setId(user.getId());
         responseUser.setName(user.getUserName());
 //        responseUser.setBirth(user.getBirth()); TODO birthをもたせる
-        responseUser.setSex(maruch.swagger.api.model.User.SexEnum.valueOf(user.getSex().toString()));
+        responseUser.setSex(maruch.swagger.api.model.User.SexEnum.fromValue(user.getSex().getValue()));
 
         return responseUser;
     }

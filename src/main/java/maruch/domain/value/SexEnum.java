@@ -1,8 +1,11 @@
 package maruch.domain.value;
 
+import lombok.Getter;
+
 /**
  * 性別を表す.
  */
+@Getter
 public enum SexEnum {
     MAN("man"),
 
@@ -23,8 +26,8 @@ public enum SexEnum {
      * @return 変換先
      */
     public static SexEnum toEnum(String value) {
-        for(SexEnum sex: SexEnum.values()) {
-            if (sex.toString().equals(value)) {
+        for (SexEnum sex : SexEnum.values()) {
+            if (sex.getValue().equals(value)) {
                 return sex;
             }
         }

@@ -61,10 +61,26 @@ public class LunchSearchValue {
         LIPID("lipid"),
         RANDOM("random");
 
+        @Getter
         private String value;
 
         SortEnum(String value) {
             this.value = value;
+        }
+
+        /**
+         * Enumへ変換する.
+         *
+         * @param value 変換元String
+         * @return 変換先
+         */
+        public static SortEnum toEnum(String value) {
+            for (SortEnum val : SortEnum.values()) {
+                if (val.getValue().equals(value)) {
+                    return val;
+                }
+            }
+            return null;
         }
     }
 }

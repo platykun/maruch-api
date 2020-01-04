@@ -19,7 +19,7 @@ import javax.validation.constraints.*;
  * LunchListSearchProperties
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-01-04T17:46:58.137124+09:00[Asia/Tokyo]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-01-04T18:32:38.687264+09:00[Asia/Tokyo]")
 public class LunchListSearchProperties  implements Serializable  {
   private static final long serialVersionUID = 1L;
 

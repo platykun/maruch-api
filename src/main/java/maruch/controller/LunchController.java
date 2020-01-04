@@ -60,7 +60,7 @@ public class LunchController {
         List<Lunch> resultModels = lunchService.getLunches(lunchSearchValue);
 
         List<maruch.swagger.api.model.Lunch> results =  resultModels.stream()
-                .map(r -> LunchHelper.convertModelToResultLunch(r))
+                .map(LunchHelper::convertModelToResultLunch)
                 .collect(Collectors.toList());
         return ResponseEntity
                 .ok()

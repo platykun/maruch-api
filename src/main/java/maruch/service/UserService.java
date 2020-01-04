@@ -28,7 +28,7 @@ public class UserService {
         AppUserEntity appUserEntity = new AppUserEntity(
                 0,
                 user.getUserName(),
-                user.getSex().toString()
+                user.getSex().getValue()
         );
 
         AppUserEntity result = appUserRepository.save(appUserEntity);
@@ -54,7 +54,7 @@ public class UserService {
         AppUserEntity appUserEntity = new AppUserEntity(
                 user.getId(),
                 user.getUserName(),
-                user.getSex().toString()
+                user.getSex().getValue()
         );
 
         AppUserEntity result = appUserRepository.save(appUserEntity);
