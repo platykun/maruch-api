@@ -1,4 +1,4 @@
-package swagger.api.model;
+package maruch.swagger.api.model;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -15,7 +15,7 @@ import javax.validation.constraints.*;
  */
 @ApiModel(description = "値の範囲を指定")
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2019-12-27T18:46:41.493073+09:00[Asia/Tokyo]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-01-04T15:52:30.862918+09:00[Asia/Tokyo]")
 public class IntegerRange  implements Serializable  {
   private static final long serialVersionUID = 1L;
 

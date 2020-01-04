@@ -1,10 +1,11 @@
-package swagger.api.model;
+package maruch.swagger.api.model;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.util.Date;
 import java.io.Serializable;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
@@ -15,36 +16,36 @@ import javax.validation.constraints.*;
  */
 @ApiModel(description = "お気に入りランチ情報")
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2019-12-27T18:46:41.493073+09:00[Asia/Tokyo]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-01-04T15:52:30.862918+09:00[Asia/Tokyo]")
 public class Favorite  implements Serializable  {
   private static final long serialVersionUID = 1L;
 
-  @JsonProperty("imageUrl")
-  private String imageUrl = null;
+  @JsonProperty("lunchId")
+  private Integer lunchId = null;
 
   @JsonProperty("date")
-  private String date = null;
+  private Date date = null;
 
-  public Favorite imageUrl(String imageUrl) {
-    this.imageUrl = imageUrl;
+  public Favorite lunchId(Integer lunchId) {
+    this.lunchId = lunchId;
     return this;
   }
 
   /**
-   * ランチ画像のURL
-   * @return imageUrl
+   * ランチID
+   * @return lunchId
   **/
-  @ApiModelProperty(example = "google.com", value = "ランチ画像のURL")
+  @ApiModelProperty(example = "1001", value = "ランチID")
 
-  public String getImageUrl() {
-    return imageUrl;
+  public Integer getLunchId() {
+    return lunchId;
   }
 
-  public void setImageUrl(String imageUrl) {
-    this.imageUrl = imageUrl;
+  public void setLunchId(Integer lunchId) {
+    this.lunchId = lunchId;
   }
 
-  public Favorite date(String date) {
+  public Favorite date(Date date) {
     this.date = date;
     return this;
   }
@@ -53,13 +54,14 @@ public class Favorite  implements Serializable  {
    * お気に入り日時(JST)
    * @return date
   **/
-  @ApiModelProperty(example = "2019-11-17T12:00:00.000+0000", value = "お気に入り日時(JST)")
+  @ApiModelProperty(value = "お気に入り日時(JST)")
 
-  public String getDate() {
+  @Valid
+  public Date getDate() {
     return date;
   }
 
-  public void setDate(String date) {
+  public void setDate(Date date) {
     this.date = date;
   }
 
@@ -73,13 +75,13 @@ public class Favorite  implements Serializable  {
       return false;
     }
     Favorite favorite = (Favorite) o;
-    return Objects.equals(this.imageUrl, favorite.imageUrl) &&
+    return Objects.equals(this.lunchId, favorite.lunchId) &&
         Objects.equals(this.date, favorite.date);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(imageUrl, date);
+    return Objects.hash(lunchId, date);
   }
 
   @Override
@@ -87,7 +89,7 @@ public class Favorite  implements Serializable  {
     StringBuilder sb = new StringBuilder();
     sb.append("class Favorite {\n");
     
-    sb.append("    imageUrl: ").append(toIndentedString(imageUrl)).append("\n");
+    sb.append("    lunchId: ").append(toIndentedString(lunchId)).append("\n");
     sb.append("    date: ").append(toIndentedString(date)).append("\n");
     sb.append("}");
     return sb.toString();

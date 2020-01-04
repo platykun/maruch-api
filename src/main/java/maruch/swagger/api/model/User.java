@@ -1,4 +1,4 @@
-package swagger.api.model;
+package maruch.swagger.api.model;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -16,12 +16,12 @@ import javax.validation.constraints.*;
  */
 @ApiModel(description = "ユーザ情報")
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2019-12-27T18:46:41.493073+09:00[Asia/Tokyo]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-01-04T15:52:30.862918+09:00[Asia/Tokyo]")
 public class User  implements Serializable  {
   private static final long serialVersionUID = 1L;
 
   @JsonProperty("id")
-  private String id = null;
+  private Integer id = null;
 
   @JsonProperty("name")
   private String name = null;
@@ -64,7 +64,7 @@ public class User  implements Serializable  {
   @JsonProperty("birth")
   private String birth = null;
 
-  public User id(String id) {
+  public User id(Integer id) {
     this.id = id;
     return this;
   }
@@ -75,11 +75,11 @@ public class User  implements Serializable  {
   **/
   @ApiModelProperty(example = "1", value = "ユーザID")
 
-  public String getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 

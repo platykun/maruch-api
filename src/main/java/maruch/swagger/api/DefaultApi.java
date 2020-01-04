@@ -3,12 +3,14 @@
  * https://github.com/swagger-api/swagger-codegen
  * Do not edit the class manually.
  */
-package swagger.api;
+package maruch.swagger.api;
 
-import java.math.BigDecimal;
-import swagger.api.model.Favorite;
-import swagger.api.model.Lunch;
-import swagger.api.model.User;
+import maruch.swagger.api.model.Favorite;
+import maruch.swagger.api.model.Lunch;
+import maruch.swagger.api.model.LunchListSearchProperties;
+import maruch.swagger.api.model.RequestUser;
+import maruch.swagger.api.model.SearchProperties;
+import maruch.swagger.api.model.User;
 import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -25,7 +27,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2019-12-27T18:46:41.493073+09:00[Asia/Tokyo]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-01-04T15:52:30.862918+09:00[Asia/Tokyo]")
 @Api(value = "Default", description = "the Default API")
 public interface DefaultApi {
 
@@ -36,43 +38,44 @@ public interface DefaultApi {
         @ApiResponse(code = 200, message = "お気に入りランチ一覧", response = Favorite.class, responseContainer = "List") })
     @RequestMapping(value = "/favorites",
         produces = { "*/*" }, 
+        consumes = { "*/*" },
         method = RequestMethod.GET)
-    ResponseEntity<List<Favorite>> favoritesGet(@DecimalMin("1") @DecimalMax("100") @ApiParam(value = "返却するデータのサイズ。") @Valid @RequestParam(value = "count", required = false) BigDecimal count,@DecimalMin("1") @DecimalMax("100") @ApiParam(value = "取得するデータのページ数。") @Valid @RequestParam(value = "cursor", required = false) BigDecimal cursor);
+    ResponseEntity<List<Favorite>> favoritesGet(@ApiParam(value = ""  )  @Valid @RequestBody SearchProperties body);
 
 
-    @ApiOperation(value = "ランチを追加する", nickname = "lunchsAddPost", notes = "ランチを追加する", response = Lunch.class, authorizations = {
+    @ApiOperation(value = "ランチを追加する", nickname = "lunchesAddPost", notes = "ランチを追加する", response = Lunch.class, authorizations = {
         @Authorization(value = "application", scopes = {
             @AuthorizationScope(scope = "", description = "")            })    }, tags={  })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = Lunch.class) })
-    @RequestMapping(value = "/lunchs/add",
+    @RequestMapping(value = "/lunches/add",
         produces = { "*/*" }, 
         consumes = { "*/*" },
         method = RequestMethod.POST)
-    ResponseEntity<Lunch> lunchsAddPost(@ApiParam(value = ""  )  @Valid @RequestBody Lunch body);
+    ResponseEntity<Lunch> lunchesAddPost(@ApiParam(value = ""  )  @Valid @RequestBody Lunch body);
 
 
-    @ApiOperation(value = "ランチの詳細情報を取得する", nickname = "lunchsIdGet", notes = "ランチの詳細情報を取得する", response = Object.class, authorizations = {
+    @ApiOperation(value = "ランチの詳細情報を取得する", nickname = "lunchesIdGet", notes = "ランチの詳細情報を取得する", response = Lunch.class, authorizations = {
         @Authorization(value = "application", scopes = {
             @AuthorizationScope(scope = "", description = "")            })    }, tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Successful response", response = Object.class) })
-    @RequestMapping(value = "/lunchs/{id}",
+        @ApiResponse(code = 200, message = "Successful response", response = Lunch.class) })
+    @RequestMapping(value = "/lunches/{id}",
         produces = { "*/*" }, 
         method = RequestMethod.GET)
-    ResponseEntity<Object> lunchsIdGet(@ApiParam(value = "ランチID",required=true) @PathVariable("id") Long id);
+    ResponseEntity<Lunch> lunchesIdGet(@ApiParam(value = "ランチID",required=true) @PathVariable("id") Long id);
 
 
-    @ApiOperation(value = "ランチの一覧を取得する", nickname = "lunchsListPost", notes = "リクエストパラメータが複雑になることが見込まれるためGETではなくPOSTとして定義。", response = Lunch.class, authorizations = {
+    @ApiOperation(value = "ランチの一覧を取得する", nickname = "lunchesListPost", notes = "リクエストパラメータが複雑になることが見込まれるためGETではなくPOSTとして定義。", response = Lunch.class, responseContainer = "List", authorizations = {
         @Authorization(value = "application", scopes = {
             @AuthorizationScope(scope = "", description = "")            })    }, tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "OK", response = Lunch.class) })
-    @RequestMapping(value = "/lunchs/list",
+        @ApiResponse(code = 200, message = "OK", response = Lunch.class, responseContainer = "List") })
+    @RequestMapping(value = "/lunches/list",
         produces = { "*/*" }, 
         consumes = { "*/*" },
         method = RequestMethod.POST)
-    ResponseEntity<Lunch> lunchsListPost(@ApiParam(value = ""  )  @Valid @RequestBody Object body);
+    ResponseEntity<List<Lunch>> lunchesListPost(@ApiParam(value = ""  )  @Valid @RequestBody LunchListSearchProperties body);
 
 
     @ApiOperation(value = "ユーザを作成する", nickname = "usersAddPost", notes = "ユーザを作成する。作成済みのユーザ情報を返却する", response = User.class, authorizations = {
@@ -84,7 +87,7 @@ public interface DefaultApi {
         produces = { "*/*" }, 
         consumes = { "*/*" },
         method = RequestMethod.POST)
-    ResponseEntity<User> usersAddPost(@ApiParam(value = ""  )  @Valid @RequestBody Object body);
+    ResponseEntity<User> usersAddPost(@ApiParam(value = ""  )  @Valid @RequestBody RequestUser body);
 
 
     @ApiOperation(value = "ログインユーザのユーザ情報を取得する", nickname = "usersMeGet", notes = "ログインユーザのユーザ情報を取得する", response = User.class, authorizations = {
@@ -94,9 +97,8 @@ public interface DefaultApi {
         @ApiResponse(code = 200, message = "OK", response = User.class) })
     @RequestMapping(value = "/users/me",
         produces = { "*/*" }, 
-        consumes = { "*/*" },
         method = RequestMethod.GET)
-    ResponseEntity<User> usersMeGet(@ApiParam(value = ""  )  @Valid @RequestBody Object body);
+    ResponseEntity<User> usersMeGet();
 
 
     @ApiOperation(value = "ログインユーザのユーザ情報を更新する", nickname = "usersMePut", notes = "ユーザを作成する。作成済みのユーザ情報を返却する", response = User.class, authorizations = {
@@ -108,6 +110,6 @@ public interface DefaultApi {
         produces = { "*/*" }, 
         consumes = { "*/*" },
         method = RequestMethod.PUT)
-    ResponseEntity<User> usersMePut(@ApiParam(value = ""  )  @Valid @RequestBody Object body);
+    ResponseEntity<User> usersMePut(@ApiParam(value = ""  )  @Valid @RequestBody RequestUser body);
 
 }

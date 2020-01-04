@@ -1,12 +1,13 @@
-package swagger.api.model;
+package maruch.swagger.api.model;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import swagger.api.model.Shop;
-import swagger.api.model.User;
+import maruch.swagger.api.model.LunchDetail;
+import maruch.swagger.api.model.Shop;
+import maruch.swagger.api.model.User;
 import java.io.Serializable;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
@@ -16,12 +17,12 @@ import javax.validation.constraints.*;
  * Lunch
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2019-12-27T18:46:41.493073+09:00[Asia/Tokyo]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-01-04T15:52:30.862918+09:00[Asia/Tokyo]")
 public class Lunch  implements Serializable  {
   private static final long serialVersionUID = 1L;
 
   @JsonProperty("id")
-  private String id = null;
+  private Integer id = null;
 
   @JsonProperty("imageUrl")
   private String imageUrl = null;
@@ -32,13 +33,13 @@ public class Lunch  implements Serializable  {
   @JsonProperty("shop")
   private Shop shop = null;
 
-  @JsonProperty("value")
-  private Integer value = null;
+  @JsonProperty("price")
+  private Integer price = null;
 
   @JsonProperty("detail")
-  private Object detail = null;
+  private LunchDetail detail = null;
 
-  public Lunch id(String id) {
+  public Lunch id(Integer id) {
     this.id = id;
     return this;
   }
@@ -49,11 +50,11 @@ public class Lunch  implements Serializable  {
   **/
   @ApiModelProperty(example = "1", value = "ID")
 
-  public String getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 
@@ -116,41 +117,42 @@ public class Lunch  implements Serializable  {
     this.shop = shop;
   }
 
-  public Lunch value(Integer value) {
-    this.value = value;
+  public Lunch price(Integer price) {
+    this.price = price;
     return this;
   }
 
   /**
    * 値段
-   * @return value
+   * @return price
   **/
   @ApiModelProperty(example = "1200", value = "値段")
 
-  public Integer getValue() {
-    return value;
+  public Integer getPrice() {
+    return price;
   }
 
-  public void setValue(Integer value) {
-    this.value = value;
+  public void setPrice(Integer price) {
+    this.price = price;
   }
 
-  public Lunch detail(Object detail) {
+  public Lunch detail(LunchDetail detail) {
     this.detail = detail;
     return this;
   }
 
   /**
-   * ランチの詳細情報。画像解析の結果が格納されている
+   * Get detail
    * @return detail
   **/
-  @ApiModelProperty(value = "ランチの詳細情報。画像解析の結果が格納されている")
+  @ApiModelProperty(value = "")
 
-  public Object getDetail() {
+  @Valid
+  public LunchDetail getDetail() {
     return detail;
   }
 
-  public void setDetail(Object detail) {
+  public void setDetail(LunchDetail detail) {
     this.detail = detail;
   }
 
@@ -168,13 +170,13 @@ public class Lunch  implements Serializable  {
         Objects.equals(this.imageUrl, lunch.imageUrl) &&
         Objects.equals(this.creator, lunch.creator) &&
         Objects.equals(this.shop, lunch.shop) &&
-        Objects.equals(this.value, lunch.value) &&
+        Objects.equals(this.price, lunch.price) &&
         Objects.equals(this.detail, lunch.detail);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, imageUrl, creator, shop, value, detail);
+    return Objects.hash(id, imageUrl, creator, shop, price, detail);
   }
 
   @Override
@@ -186,7 +188,7 @@ public class Lunch  implements Serializable  {
     sb.append("    imageUrl: ").append(toIndentedString(imageUrl)).append("\n");
     sb.append("    creator: ").append(toIndentedString(creator)).append("\n");
     sb.append("    shop: ").append(toIndentedString(shop)).append("\n");
-    sb.append("    value: ").append(toIndentedString(value)).append("\n");
+    sb.append("    price: ").append(toIndentedString(price)).append("\n");
     sb.append("    detail: ").append(toIndentedString(detail)).append("\n");
     sb.append("}");
     return sb.toString();

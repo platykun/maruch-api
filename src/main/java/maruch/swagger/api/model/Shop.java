@@ -1,11 +1,11 @@
-package swagger.api.model;
+package maruch.swagger.api.model;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import swagger.api.model.GurunabiUrl;
+import maruch.swagger.api.model.GurunabiUrl;
 import java.io.Serializable;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
@@ -16,12 +16,12 @@ import javax.validation.constraints.*;
  */
 @ApiModel(description = "店舗情報の概要")
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2019-12-27T18:46:41.493073+09:00[Asia/Tokyo]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-01-04T15:52:30.862918+09:00[Asia/Tokyo]")
 public class Shop  implements Serializable  {
   private static final long serialVersionUID = 1L;
 
   @JsonProperty("id")
-  private String id = null;
+  private Integer id = null;
 
   @JsonProperty("name")
   private String name = null;
@@ -44,7 +44,7 @@ public class Shop  implements Serializable  {
   @JsonProperty("url")
   private GurunabiUrl url = null;
 
-  public Shop id(String id) {
+  public Shop id(Integer id) {
     this.id = id;
     return this;
   }
@@ -55,11 +55,11 @@ public class Shop  implements Serializable  {
   **/
   @ApiModelProperty(example = "1", value = "店舗ID")
 
-  public String getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 
