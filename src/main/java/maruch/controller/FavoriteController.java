@@ -11,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -32,8 +33,8 @@ public class FavoriteController {
                 .body(FavoriteHelper.convertModelToResult(result));
     }
 
-    public ResponseEntity<List<maruch.swagger.api.model.Favorite>> findFavorite(maruch.swagger.api.model.SearchProperties searchProperties) {
-        SearchPropertiesValue searchPropertiesValue = SearchPropertiesHelper.convertToModel(searchProperties);
+    public ResponseEntity<List<maruch.swagger.api.model.Favorite>> findFavorite(BigDecimal count, BigDecimal cursor) {
+        SearchPropertiesValue searchPropertiesValue = SearchPropertiesHelper.convertToModel(count, cursor);
 
         List<Favorite> result = favoriteService.getFavorites(searchPropertiesValue,
                 1);

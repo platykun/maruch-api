@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -25,8 +28,8 @@ public class BaseControllerImpl implements DefaultApi {
     @NonNull FavoriteController favoriteController;
 
     @Override
-    public ResponseEntity<List<Favorite>> favoritesGet(@Valid maruch.swagger.api.model.SearchProperties body) {
-        return favoriteController.findFavorite(body);
+    public ResponseEntity<List<Favorite>> favoritesGet(@DecimalMin("1") @DecimalMax("100") @Valid BigDecimal count, @DecimalMin("1") @DecimalMax("100") @Valid BigDecimal cursor) {
+        return favoriteController.findFavorite(count, cursor);
     }
 
     @Override

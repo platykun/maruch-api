@@ -5,11 +5,11 @@
  */
 package maruch.swagger.api;
 
+import java.math.BigDecimal;
 import maruch.swagger.api.model.Favorite;
 import maruch.swagger.api.model.Lunch;
 import maruch.swagger.api.model.LunchListSearchProperties;
 import maruch.swagger.api.model.RequestUser;
-import maruch.swagger.api.model.SearchProperties;
 import maruch.swagger.api.model.User;
 import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +27,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-01-04T15:52:30.862918+09:00[Asia/Tokyo]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-01-04T17:46:58.137124+09:00[Asia/Tokyo]")
 @Api(value = "Default", description = "the Default API")
 public interface DefaultApi {
 
@@ -38,9 +38,8 @@ public interface DefaultApi {
         @ApiResponse(code = 200, message = "お気に入りランチ一覧", response = Favorite.class, responseContainer = "List") })
     @RequestMapping(value = "/favorites",
         produces = { "*/*" }, 
-        consumes = { "*/*" },
         method = RequestMethod.GET)
-    ResponseEntity<List<Favorite>> favoritesGet(@ApiParam(value = ""  )  @Valid @RequestBody SearchProperties body);
+    ResponseEntity<List<Favorite>> favoritesGet(@DecimalMin("1") @DecimalMax("100") @ApiParam(value = "返却するデータのサイズ。") @Valid @RequestParam(value = "count", required = false) BigDecimal count,@DecimalMin("1") @DecimalMax("100") @ApiParam(value = "取得するデータのページ数。") @Valid @RequestParam(value = "cursor", required = false) BigDecimal cursor);
 
 
     @ApiOperation(value = "ランチを追加する", nickname = "lunchesAddPost", notes = "ランチを追加する", response = Lunch.class, authorizations = {
