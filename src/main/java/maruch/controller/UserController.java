@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import maruch.domain.User;
 import maruch.helper.UserHelper;
 import maruch.service.UserService;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +28,9 @@ public class UserController {
         maruch.swagger.api.model.User responseUser =
                 UserHelper.convertUserModelToRequestUser(createdUser);
 
-        return ResponseEntity.ok(responseUser);
+        return ResponseEntity.ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(responseUser);
     }
 
     /**
@@ -40,7 +43,10 @@ public class UserController {
 
         maruch.swagger.api.model.User responseUser =
                 UserHelper.convertUserModelToRequestUser(loginUser);
-        return ResponseEntity.ok(responseUser);
+        return ResponseEntity
+                .ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(responseUser);
     }
 
     /**
@@ -57,6 +63,8 @@ public class UserController {
 
         maruch.swagger.api.model.User responseUser =
                 UserHelper.convertUserModelToRequestUser(updatedUser);
-        return ResponseEntity.ok(responseUser);
+        return ResponseEntity.ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(responseUser);
     }
 }

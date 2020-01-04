@@ -6,6 +6,7 @@ import maruch.domain.Lunch;
 import maruch.domain.value.LunchSearchValue;
 import maruch.helper.LunchHelper;
 import maruch.service.LunchService;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +29,10 @@ public class LunchController {
         Lunch lunchModel = LunchHelper.convertRequestToModel(lunch);
         Lunch result = lunchService.createLunch(lunchModel);
 
-        return ResponseEntity.ok(LunchHelper.convertModelToResultLunch(result));
+        return ResponseEntity
+                .ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(LunchHelper.convertModelToResultLunch(result));
     }
 
     /**
@@ -40,7 +44,9 @@ public class LunchController {
     public ResponseEntity<maruch.swagger.api.model.Lunch> getLunch(Long id) {
         Lunch result = lunchService.getLunch(id.intValue());
 
-        return ResponseEntity.ok(LunchHelper.convertModelToResultLunch(result));
+        return ResponseEntity.ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(LunchHelper.convertModelToResultLunch(result));
     }
 
     /**
@@ -56,6 +62,9 @@ public class LunchController {
         List<maruch.swagger.api.model.Lunch> results =  resultModels.stream()
                 .map(r -> LunchHelper.convertModelToResultLunch(r))
                 .collect(Collectors.toList());
-        return ResponseEntity.ok(results);
+        return ResponseEntity
+                .ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(results);
     }
 }

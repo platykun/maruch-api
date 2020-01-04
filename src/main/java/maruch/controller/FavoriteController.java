@@ -7,6 +7,7 @@ import maruch.domain.value.SearchPropertiesValue;
 import maruch.helper.FavoriteHelper;
 import maruch.helper.SearchPropertiesHelper;
 import maruch.service.FavoriteService;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +26,10 @@ public class FavoriteController {
         Favorite model = FavoriteHelper.convertRequestToModel(favorite);
         Favorite result = favoriteService.favorite(model);
 
-        return ResponseEntity.ok(FavoriteHelper.convertModelToResult(result));
+        return ResponseEntity
+                .ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(FavoriteHelper.convertModelToResult(result));
     }
 
     public ResponseEntity<List<maruch.swagger.api.model.Favorite>> findFavorite(maruch.swagger.api.model.SearchProperties searchProperties) {
@@ -34,8 +38,9 @@ public class FavoriteController {
         List<Favorite> result = favoriteService.getFavorites(searchPropertiesValue,
                 1);
 
-        return ResponseEntity.ok(FavoriteHelper.convertModelsToResult(result));
+        return ResponseEntity
+                .ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(FavoriteHelper.convertModelsToResult(result));
     }
-
-
 }
