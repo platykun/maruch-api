@@ -11,6 +11,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.projectmanagement.FirebaseProjectManagement;
 import org.springframework.stereotype.Service;
 
+import java.io.ByteArrayInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -29,8 +30,9 @@ public class FirebaseService {
     public FirebaseService() {
         FirebaseOptions options = null;
         try {
+            String json = System.getenv("GOOGLE_CREDENTIALS");
             options = new FirebaseOptions.Builder()
-                    .setCredentials(GoogleCredentials.getApplicationDefault())
+                    .setCredentials(GoogleCredentials.fromStream(new ByteArrayInputStream(json.getBytes("utf-8"))))
 //                    .setDatabaseUrl("https:///maruch-fb-api.firebaseio.com/")
                     .build();
         } catch (IOException e) {
