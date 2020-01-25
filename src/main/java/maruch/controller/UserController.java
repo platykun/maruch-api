@@ -4,6 +4,7 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import maruch.domain.User;
 import maruch.helper.UserHelper;
+import maruch.service.FirebaseService;
 import maruch.service.UserService;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,8 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class UserController {
     @NonNull UserService userService;
+
+    @NonNull FirebaseService firebaseService;
 
     /**
      * ユーザを追加する.
@@ -40,6 +43,7 @@ public class UserController {
      */
     public ResponseEntity<maruch.swagger.api.model.User> getLoginUser() {
         User loginUser = userService.getLoginUser();
+        firebaseService.getFirebaseToken("");
 
         maruch.swagger.api.model.User responseUser =
                 UserHelper.convertUserModelToRequestUser(loginUser);
